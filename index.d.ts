@@ -1,4 +1,4 @@
-declare module 'react-native-deck-swiper' {
+declare module 'react-native-deck-swiper-renewed' {
   import {StyleProp, ViewStyle} from 'react-native';
 
   export interface SwiperProps<T> {
