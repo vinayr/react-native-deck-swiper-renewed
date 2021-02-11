@@ -1,5 +1,5 @@
 {
-    "name": "react-native-deck-swiper",
+    "name": "react-native-deck-swiper-renewed",
     "version": "2.0.5",
     "description": "Awesome tinder like card swiper for react-native. Highly Customizable!",
     "main": "index.js",
@@ -15,7 +15,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/webraptor/react-native-deck-swiper.git"
+        "url": "git+https://github.com/webraptor/react-native-deck-swiper-renewed.git"
     },
     "keywords": [
         "react-native",
@@ -31,9 +31,9 @@
     "author": "Bogdan Pop / WebRaptor",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/webraptor/react-native-deck-swiper/issues"
+        "url": "https://github.com/webraptor/react-native-deck-swiper-renewed/issues"
     },
-    "homepage": "https://github.com/webraptor/react-native-deck-swiper#readme",
+    "homepage": "https://github.com/webraptor/react-native-deck-swiper-renewed#readme",
     "dependencies": {
         "prop-types": "15.5.10"
     },
