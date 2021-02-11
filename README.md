@@ -3,14 +3,19 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 [![npm version](https://badge.fury.io/js/react-native-deck-swiper.svg)](https://badge.fury.io/js/react-native-deck-swiper)
 
+## credits
+
+```
+All credits to original creators and contributions
+```
 ## Installation
 
 ```
-yarn add react-native-deck-swiper
+yarn add npm i react-native-deck-swiper-renewed
 ```
 OR
 ```
-npm install react-native-deck-swiper --save
+npm install npm i react-native-deck-swiper-renewed --save
 ```
 
 ## Versions info
