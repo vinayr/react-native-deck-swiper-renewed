@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { PanResponder, Text, View, Dimensions, Animated } from 'react-native'
+import {  Image,PanResponder, Text, View, Dimensions, Animated } from 'react-native'
 import PropTypes from 'prop-types'
 import isEqual from 'lodash/isEqual'
 
@@ -538,8 +538,9 @@ class Swiper extends Component {
 
   jumpToCardIndex = newCardIndex => {
     if (this.state.cards[newCardIndex]) {
-      this.setCardIndex(newCardIndex, false)
-    }
+      this.setCardIndex(newCardIndex, false);
+      return true
+    }else return false
   }
 
   onSwipedCallbacks = (swipeDirectionCallback) => {
@@ -696,7 +697,7 @@ class Swiper extends Component {
     })
 
   render = () => {
-    const { pointerEvents, backgroundColor, marginTop, marginBottom, containerStyle, swipeBackCard } = this.props
+    const {loadingGifStyle, loadingGif,isLoading,pointerEvents, backgroundColor, marginTop, marginBottom, containerStyle, swipeBackCard } = this.props
     return (
       <View
         pointerEvents={pointerEvents}
@@ -713,6 +714,26 @@ class Swiper extends Component {
         {this.renderChildren()}
         {swipeBackCard ? this.renderSwipeBackCard() : null}
         {this.renderStack()}
+        {
+          isLoading ? 
+          <View style={{
+            backgroundColor:'#00000059',
+             width:width,
+             height:height,
+             position:'absolute',
+             top:0,
+             zIndex:2,
+             justifyContent:'center',
+             alignItems:'center'
+             }}>
+              <Image
+                    source={loadingGif? loadingGif: require('./loading.gif')}
+                    style={loadingGifStyle? loadingGifStyle:{ width: width, height: height/4 }}
+                    resizeMode={'contain'}
+                />
+          </View>
+          : null
+        }
       </View>
     )
   }

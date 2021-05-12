@@ -67,7 +67,9 @@ With respect to bugfixes and further developments, please check the [To Do](http
 | verticalSwipe   | bool           | enable/disable vertical swiping                                      |          | true    |
 | showSecondCard  | bool           | enable/disable second card while swiping                             |          | true    |
 | stackSize       | number         | number of underlaying cards to show (showSecondCard must be enabled) |          | 1       |
-
+| isLoading       | boolean         | enables loading view with default gif if gif not specified |          | null       |
+| loadingGif       | NodeRequire         | specify custom gif file example: require('./images/loaginf.gif') |          | null       |
+| loadingGifStyle       | ImageStyle         | styles for gif image |          | null       |
 ### Event callbacks
 
 | Props             | type   | description                                                                           | default |
@@ -299,7 +301,7 @@ To trigger imperative animations, you can use a reference to the Swiper componen
 | swipeRight      | mustDecrementCardIndex = false | swipe right to the next card  |
 | swipeTop        | mustDecrementCardIndex = false | swipe top to the next card    |
 | swipeBottom     | mustDecrementCardIndex = false | swipe bottom to the next card |
-| jumpToCardIndex | cardIndex                      | set the current card index    |
+| jumpToCardIndex | cardIndex                      | set the current card index (returns true after jumping)   |
 
 ## Usage example
 

@@ -1,5 +1,5 @@
 declare module 'react-native-deck-swiper-renewed' {
-  import {StyleProp, ViewStyle} from 'react-native';
+  import {ImageStyle, StyleProp, ViewStyle} from 'react-native';
 
   export interface SwiperProps<T> {
     animateCardOpacity?: boolean;
@@ -7,6 +7,9 @@ declare module 'react-native-deck-swiper-renewed' {
     backgroundColor?: string;
     cardHorizontalMargin?: number;
     cardIndex?: number;
+    isLoading?: boolean;
+    loadingGif?: NodeRequire;
+    loadingGifStyle?: ImageStyle;
     cards: T[];
     cardStyle?: number | object;
     cardVerticalMargin?: number;
@@ -81,7 +84,7 @@ declare module 'react-native-deck-swiper-renewed' {
     swipeRight: (mustDecrementCardIndex?: boolean) => void;
     swipeTop: (mustDecrementCardIndex?: boolean) => void;
     swipeBottom: (mustDecrementCardIndex?: boolean) => void;
-    jumpToCardIndex: (cardIndex: number) => void;
+    jumpToCardIndex: (cardIndex: number) => boolean;
     swipeBack: (
       cb?: (previousCardIndex: number, previousCard: T) => void
     ) => void;
