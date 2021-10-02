@@ -43,7 +43,6 @@ class Swiper extends Component {
 		this.state = {
 			...calculateCardIndexes(props.cardIndex, props.cards),
 			pan: new Animated.ValueXY(),
-			cards: props.cards,
 			previousCardX: new Animated.Value(props.previousCardDefaultPositionX),
 			previousCardY: new Animated.Value(props.previousCardDefaultPositionY),
 			swipedAllCards: false,
