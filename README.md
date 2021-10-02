@@ -11,11 +11,11 @@ All credits to original creators and contributions
 ## Installation
 
 ```
-yarn add npm i react-native-deck-swiper-renewed
+yarn add npm i @ilterugur/react-native-deck-swiper-renewed
 ```
 OR
 ```
-npm install npm i react-native-deck-swiper-renewed --save
+npm install npm i @ilterugur/react-native-deck-swiper-renewed --save
 ```
 
 ## Versions info

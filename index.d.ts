@@ -1,4 +1,4 @@
-declare module 'react-native-deck-swiper-renewed' {
+declare module '@ilterugur/react-native-deck-swiper-renewed' {
   import {ImageStyle, StyleProp, ViewStyle} from 'react-native';
 
   export interface SwiperProps<T> {
@@ -44,7 +44,7 @@ declare module 'react-native-deck-swiper-renewed' {
     onSwiping?: (x: number, y: number) => void;
     currentCardIndex?: (cardIndex:number) => void;
     onSwipeGuesterState?:(dx:number, dy:number) => void;
-    
+
     onTapCard?: (cardIndex: number) => void;
     onTapCardDeadZone?: number;
     outputCardOpacityRangeX?: [number, number, number, number, number];
