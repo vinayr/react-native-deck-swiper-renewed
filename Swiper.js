@@ -786,9 +786,9 @@ class Swiper extends Component {
 	};
 
 	renderStack = () => {
-		const { cards, firstCardIndex, swipedAllCards } = this.state;
+		const { firstCardIndex, swipedAllCards } = this.state;
 		const renderedCards = [];
-		let { stackSize, infinite, showSecondCard } = this.props;
+		let { cards, stackSize, infinite, showSecondCard } = this.props;
 		let index = firstCardIndex;
 		let firstCard = true;
 		let cardPosition = 0;
