@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Animated, Dimensions, Image, PanResponder, Text, View } from "react-native";
 import PropTypes from "prop-types";
-import isEqual from "lodash/isEqual";
 
 import styles from "./styles";
 
@@ -66,10 +65,22 @@ class Swiper extends Component {
 		this.props.currentCardIndex(props.cardIndex);
 	}
 
+	componentDidUpdate = (prevProps, prevState) => {
+		if (this.props.cards !== prevProps.cards) {
+			this.setState({
+				...calculateCardIndexes(this.props.cardIndex, this.props.cards),
+				swipedAllCards: false,
+				panResponderLocked: false,
+				labelType: LABEL_TYPES.NONE,
+				...rebuildStackAnimatedValues(this.props)
+			});
+		}
+	}
+
 	shouldComponentUpdate = (nextProps, nextState) => {
 		const { props, state } = this;
 		const propsChanged = (
-			!isEqual(props.cards, nextProps.cards) ||
+			props.cards !== nextProps.cards ||
 			props.cardIndex !== nextProps.cardIndex
 		);
 		const stateChanged = (
@@ -149,7 +160,8 @@ class Swiper extends Component {
 	};
 
 	onPanResponderMove = (event, gestureState) => {
-		this.props.onSwiping(this._animatedValueX, this._animatedValueY);
+		if (!this.props.horizontalSwipe && !this.props.verticalSwipe) return
+		this.props.onSwiping(this._animatedValueX, this._animatedValueY, this.state.firstCardIndex);
 		this.props.onSwipeGuesterState(gestureState.dx, gestureState.dy);
 		let { overlayOpacityHorizontalThreshold, overlayOpacityVerticalThreshold } = this.props;
 		if (!overlayOpacityHorizontalThreshold) {
@@ -203,11 +215,14 @@ class Swiper extends Component {
 	};
 
 	onPanResponderGrant = (event, gestureState) => {
+		if (!this.props.horizontalSwipe && !this.props.verticalSwipe) return
 		this.props.dragStart && this.props.dragStart();
 		if (!this.state.panResponderLocked) {
 			this.state.pan.setOffset({
-				x: this._animatedValueX,
-				y: this._animatedValueY
+				//x: this._animatedValueX,
+				//y: this._animatedValueY,
+				x: 0,
+				y: 0
 			});
 		}
 
@@ -218,6 +233,7 @@ class Swiper extends Component {
 	};
 
 	validPanResponderRelease = () => {
+		if (!this.props.horizontalSwipe && !this.props.verticalSwipe) return true
 		const {
 			disableBottomSwipe,
 			disableLeftSwipe,
@@ -543,10 +559,20 @@ class Swiper extends Component {
 		} else return false;
 	};
 
+	rebuildStackValues = () => {
+		const stackPositionsAndScales = {}
+		const { stackSize, stackSeparation, stackScale } = this.props
+		for (let position = 0; position < stackSize; position++) {
+			stackPositionsAndScales[`stackPosition${position}`] = new Animated.Value(stackSeparation * position)
+			stackPositionsAndScales[`stackScale${position}`] = new Animated.Value((100 - stackScale * position) * 0.01)
+		}
+		return stackPositionsAndScales
+	}
+
 	onSwipedCallbacks = (swipeDirectionCallback) => {
 		const previousCardIndex = this.state.firstCardIndex;
 		this.props.onSwiped(previousCardIndex, this.props.cards[previousCardIndex]);
-
+		this.setState(this.rebuildStackValues)
 		if (swipeDirectionCallback) {
 			swipeDirectionCallback(previousCardIndex, this.props.cards[previousCardIndex]);
 		}
@@ -559,9 +585,10 @@ class Swiper extends Component {
 				{
 					...calculateCardIndexes(newCardIndex, this.props.cards),
 					swipedAllCards: swipedAllCards,
-					panResponderLocked: false
+					panResponderLocked: false,
+					...rebuildStackAnimatedValues(this.props)
 				},
-				this.resetPanAndScale
+				this.resetPanAndScale()
 			);
 		}
 	};

@@ -41,7 +41,7 @@ declare module '@ilterugur/react-native-deck-swiper-renewed' {
     onSwipedLeft?: (cardIndex: number) => void;
     onSwipedRight?: (cardIndex: number) => void;
     onSwipedTop?: (cardIndex: number) => void;
-    onSwiping?: (x: number, y: number) => void;
+    onSwiping?: (x: number, y: number, cardIndex: number) => void;
     currentCardIndex?: (cardIndex:number) => void;
     onSwipeGuesterState?:(dx:number, dy:number) => void;
 
