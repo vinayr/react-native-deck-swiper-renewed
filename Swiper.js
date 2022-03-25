@@ -60,6 +60,8 @@ class Swiper extends Component {
 		this.state.pan.x.addListener(value => (this._animatedValueX = value.value));
 		this.state.pan.y.addListener(value => (this._animatedValueY = value.value));
 
+		this.dimensionListener = undefined;
+
 		this.initializeCardStyle();
 		this.initializePanResponder();
 		this.props.currentCardIndex(props.cardIndex);
@@ -97,7 +99,7 @@ class Swiper extends Component {
 		this._mounted = false;
 		this.state.pan.x.removeAllListeners();
 		this.state.pan.y.removeAllListeners();
-		Dimensions.removeEventListener("change", this.onDimensionsChange);
+		this.dimensionListener?.remove?.();
 	};
 
 	getCardStyle = () => {
@@ -123,7 +125,7 @@ class Swiper extends Component {
 
 	initializeCardStyle = () => {
 		// this.forceUpdate()
-		Dimensions.addEventListener("change", this.onDimensionsChange);
+		this.dimensionListener = Dimensions.addEventListener("change", this.onDimensionsChange);
 	};
 
 	initializePanResponder = () => {
