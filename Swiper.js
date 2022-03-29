@@ -477,10 +477,15 @@ class Swiper extends Component {
 				tension: this.props.stackAnimationTension,
 				useNativeDriver: true
 			})
-		]).start(() => {
+		// ]).start(() => {
+		// 	this.setState({ isSwipingBack: false });
+		// 	this.decrementCardIndex(cb);
+		// });
+		]).start();
+		setTimeout(() => {
 			this.setState({ isSwipingBack: false });
 			this.decrementCardIndex(cb);
-		});
+		}, 300);
 	};
 
 	animateStack = () => {
